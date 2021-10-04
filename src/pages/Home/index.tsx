@@ -1,7 +1,8 @@
 import React, { useContext, useEffect } from 'react';
+import { ProductCard } from '../../components/ProductCard';
+import { ProductsContext } from '../../context/ProductContext';
+import { Container } from './styles';
 
-import { ProductCard } from '../components/ProductCard';
-import { ProductsContext } from '../context/ProductContext';
 
 export function Home() {
     const { products, fetchProducts } = useContext(ProductsContext);
@@ -12,16 +13,19 @@ export function Home() {
             alert(error)
         }
     }, [])
+    function handleAddProduct(id: number) {
+
+    }
     return (
-        <>
-        <h1>Ola</h1>
+        < Container>
             {products.map(product => (
                 <ProductCard key={product.id}
                     name={product.name}
                     image={product.image}
                     price={product.price}
-                    score={product.score} />
+                    score={product.score}
+                    onClick={() => handleAddProduct(product.id)} />
             ))}
-        </>
+        </ Container>
     );
 }

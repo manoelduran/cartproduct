@@ -6,3 +6,8 @@ interface Product {
   image: string;
 }
 
+interface Stock {
+  id: number;
+  amount: number;
+}
+
