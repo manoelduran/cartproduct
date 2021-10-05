@@ -4,6 +4,7 @@ interface Product {
   price: number;
   score: number;
   image: string;
+  amount: number;
 }
 
 interface Stock {

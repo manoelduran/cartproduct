@@ -4,15 +4,18 @@ import { ProductsProvider } from './context/ProductContext';
 import GlobalStyles from './styles/global';
 import { Header } from './components/Header';
 import Routes from './routes';
+import { CartProvider } from './context/CartContext';
 
 
 
 const App = (): JSX.Element => (
   <BrowserRouter>
     <ProductsProvider>
-    <GlobalStyles />
-    <Header />
-      <Routes />
+      <CartProvider>
+        <GlobalStyles />
+        <Header />
+        <Routes />
+      </CartProvider>
     </ProductsProvider>
   </BrowserRouter>
 );
