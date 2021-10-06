@@ -26,10 +26,10 @@ export function Home() {
     return (
         < Container>
             <button onClick={() => orderBy('score', !isAsc)}>
-                Score
+                Score {sortedBy === 'score' }
             </button>
             <button onClick={() => orderBy('name', !isAsc)}>
-                Name
+                Name {sortedBy === 'name' }
             </button>
             <button onClick={() => orderBy('price', !isAsc)}>
                 Price

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import {
     MdDelete,
     MdAddCircleOutline,
@@ -7,20 +8,21 @@ import { useCart } from '../../context/CartContext';
 import { formatPrice } from '../../utils/format';
 import { Container, ProductTable, Total } from './styles';
 export function Cart(): JSX.Element {
-    let frete = 10
     const { cart, removeProduct, updateProductAmount } = useCart();
     const cartFormatted = cart.map(product => ({
         ...product,
         priceFormatted: formatPrice(product.price),
         frete: formatPrice(10 * product.amount),
-        subTotal: formatPrice((product.price * product.amount) + (frete * product.amount))
+        subTotal: formatPrice((product.price * product.amount) + (10 * product.amount))
     }))
     const total = formatPrice(cart.reduce((sumTotal, product) => {
-
-        return sumTotal + (product.price * product.amount) + (frete * product.amount);
+        let frete = 10
+        if ((sumTotal + ((product.price * product.amount) + (frete * product.amount))) > 250) {
+            frete = 0
+        }
+        return sumTotal + ((product.price * product.amount) + (frete * product.amount));
     }, 0)
     )
-
     function handleProductIncrement(product: Product) {
         updateProductAmount({ productId: product.id, amount: product.amount + 1 });
     }
